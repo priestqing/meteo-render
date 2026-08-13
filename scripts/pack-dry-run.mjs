@@ -17,9 +17,10 @@ const runNpm = argumentsList => spawnSync(
 )
 
 for (const packageDirectory of selectedPackages) {
+    const packagePath = join(releaseRoot, 'packages', packageDirectory)
     const result = runNpm([
         'pack',
-        join('packages', packageDirectory),
+        packagePath,
         '--dry-run',
         '--ignore-scripts',
         '--json'

@@ -20,7 +20,8 @@ const runNpm = (argumentsList, options = {}) => spawnSync(
 )
 
 for (const packageDirectory of selectedPackages) {
-    const manifestPath = join(releaseRoot, 'packages', packageDirectory, 'package.json')
+    const packagePath = join(releaseRoot, 'packages', packageDirectory)
+    const manifestPath = join(packagePath, 'package.json')
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
     const packageSpec = `${manifest.name}@${manifest.version}`
     const lookup = runNpm(['view', packageSpec, 'version'], { stdio: 'ignore' })
@@ -38,7 +39,7 @@ for (const packageDirectory of selectedPackages) {
     console.log(`发布：${packageSpec}`)
     const publish = runNpm([
         'publish',
-        join('packages', packageDirectory),
+        packagePath,
         '--access',
         'public',
         '--ignore-scripts'
