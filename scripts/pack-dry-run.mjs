@@ -1,10 +1,11 @@
 import { spawnSync } from 'node:child_process'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { releasePackages } from './release-packages.mjs'
+import { selectReleasePackages } from './release-packages.mjs'
 
 const releaseRoot = dirname(dirname(fileURLToPath(import.meta.url)))
 const npmCliPath = process.env.npm_execpath
+const selectedPackages = selectReleasePackages()
 
 const runNpm = argumentsList => spawnSync(
     npmCliPath ? process.execPath : process.platform === 'win32' ? 'npm.cmd' : 'npm',
@@ -15,7 +16,7 @@ const runNpm = argumentsList => spawnSync(
     }
 )
 
-for (const packageDirectory of releasePackages) {
+for (const packageDirectory of selectedPackages) {
     const result = runNpm([
         'pack',
         join('packages', packageDirectory),

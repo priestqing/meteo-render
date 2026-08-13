@@ -5,6 +5,25 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      package:
+        description: Package to publish
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - core
+          - rendering
+          - micaps
+          - satellite
+          - upper-air
+          - raster
+          - wind
+          - radar
+          - volume
+          - leaflet
+          - mars3d
 
 permissions:
   contents: read
@@ -27,6 +46,9 @@ jobs:
         run: npm run check
         env:
           RELEASE_TAG: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
+          RELEASE_PACKAGE: ${{ github.event_name == 'workflow_dispatch' && inputs.package || 'all' }}
 
       - name: Publish packages in dependency order
         run: npm run publish:packages
+        env:
+          RELEASE_PACKAGE: ${{ github.event_name == 'workflow_dispatch' && inputs.package || 'all' }}

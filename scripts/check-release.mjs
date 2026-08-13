@@ -1,23 +1,30 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { releasePackages } from './release-packages.mjs'
+import { releasePackages, selectReleasePackages } from './release-packages.mjs'
 
 const releaseRoot = fileURLToPath(new URL('..', import.meta.url))
 const manifests = new Map()
+const selectedPackages = selectReleasePackages()
 
 for (const packageDirectory of releasePackages) {
+    const manifestPath = join(releaseRoot, 'packages', packageDirectory, 'package.json')
+    if (!existsSync(manifestPath)) throw new Error(`${packageDirectory} 缺少 package.json`)
+
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
+    manifests.set(manifest.name, manifest)
+}
+
+for (const packageDirectory of selectedPackages) {
     const directory = join(releaseRoot, 'packages', packageDirectory)
     const manifestPath = join(directory, 'package.json')
     const licensePath = join(directory, 'LICENSE')
     const distPath = join(directory, 'dist')
 
-    if (!existsSync(manifestPath)) throw new Error(`${packageDirectory} 缺少 package.json`)
     if (!existsSync(licensePath)) throw new Error(`${packageDirectory} 缺少 LICENSE`)
     if (!existsSync(distPath) || !statSync(distPath).isDirectory()) throw new Error(`${packageDirectory} 缺少 dist`)
 
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
-    manifests.set(manifest.name, manifest)
 
     for (const field of ['main', 'module', 'types']) {
         if (!manifest[field]) throw new Error(`${manifest.name} 缺少 ${field}`)
@@ -34,8 +41,14 @@ for (const packageDirectory of releasePackages) {
     if (unexpected.length) throw new Error(`${manifest.name} 包目录存在非发布内容：${unexpected.join(', ')}`)
 }
 
-const versions = new Set([...manifests.values()].map(manifest => manifest.version))
-if (versions.size !== 1) throw new Error(`包版本不统一：${[...versions].join(', ')}`)
+const selectedManifests = selectedPackages.map(packageDirectory => {
+    const packageName = `@meteo-render/${packageDirectory}`
+    const manifest = manifests.get(packageName)
+    if (!manifest) throw new Error(`${packageDirectory} 缺少有效的包清单`)
+    return manifest
+})
+const versions = new Set(selectedManifests.map(manifest => manifest.version))
+if (versions.size !== 1) throw new Error(`待发布包版本不统一：${[...versions].join(', ')}`)
 
 const [releaseVersion] = versions
 const releaseTag = process.env.RELEASE_TAG
@@ -43,7 +56,7 @@ if (releaseTag && releaseTag !== `v${releaseVersion}`) {
     throw new Error(`发布标签 ${releaseTag} 与包版本 ${releaseVersion} 不一致，应使用 v${releaseVersion}`)
 }
 
-for (const manifest of manifests.values()) {
+for (const manifest of selectedManifests) {
     for (const [dependencyName, dependencyRange] of Object.entries(manifest.dependencies ?? {})) {
         if (!dependencyName.startsWith('@meteo-render/')) continue
         const dependency = manifests.get(dependencyName)
@@ -54,4 +67,5 @@ for (const manifest of manifests.values()) {
     }
 }
 
-console.log(`发布内容检查通过：${manifests.size} 个包，统一版本 ${releaseVersion}`)
+const releaseScope = selectedPackages.length === releasePackages.length ? '全部包' : selectedPackages.join(', ')
+console.log(`发布内容检查通过：${releaseScope}，版本 ${releaseVersion}`)

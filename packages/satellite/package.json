@@ -1,6 +1,6 @@
 {
     "name": "@meteo-render/satellite",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Satellite image parsers producing @meteo-render/core data",
     "main": "dist/index.cjs",
     "types": "dist/types/index.d.ts",

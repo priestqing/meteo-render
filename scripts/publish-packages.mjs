@@ -2,11 +2,12 @@ import { spawnSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { releasePackages } from './release-packages.mjs'
+import { selectReleasePackages } from './release-packages.mjs'
 
 const releaseRoot = dirname(dirname(fileURLToPath(import.meta.url)))
 const npmCliPath = process.env.npm_execpath
 const preview = process.argv.includes('--dry-run')
+const selectedPackages = selectReleasePackages()
 
 const runNpm = (argumentsList, options = {}) => spawnSync(
     npmCliPath ? process.execPath : process.platform === 'win32' ? 'npm.cmd' : 'npm',
@@ -18,7 +19,7 @@ const runNpm = (argumentsList, options = {}) => spawnSync(
     }
 )
 
-for (const packageDirectory of releasePackages) {
+for (const packageDirectory of selectedPackages) {
     const manifestPath = join(releaseRoot, 'packages', packageDirectory, 'package.json')
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
     const packageSpec = `${manifest.name}@${manifest.version}`
