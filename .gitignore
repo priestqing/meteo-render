@@ -1,0 +1,16 @@
+*
+
+!.gitignore
+!README.md
+!LICENSE
+!package.json
+!.github/
+!.github/**
+!scripts/
+!scripts/**
+!packages/
+!packages/*/
+!packages/*/package.json
+!packages/*/LICENSE
+!packages/*/dist/
+!packages/*/dist/**

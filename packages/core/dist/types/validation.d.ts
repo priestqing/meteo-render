@@ -1,0 +1,11 @@
+import type { Bounds2D, Bounds3D, DrawData, GridGeometry, PointData, RadialData, RasterData, ScalarField, ValidationOptions, VectorGridData, VolumeData } from './types';
+export declare const validateBounds2D: (bounds: Bounds2D) => void;
+export declare const validateBounds3D: (bounds: Bounds3D) => void;
+export declare const validateScalarField: (field: ScalarField, expectedValueCount: number, options?: ValidationOptions) => void;
+export declare const validateGridGeometry: (geometry: GridGeometry) => void;
+export declare const validateRasterData: (data: RasterData, options?: ValidationOptions) => void;
+export declare const validateVectorGridData: (data: VectorGridData, options?: ValidationOptions) => void;
+export declare const validateRadialData: (data: RadialData, options?: ValidationOptions) => void;
+export declare const validatePointData: (data: PointData, options?: ValidationOptions) => void;
+export declare const validateVolumeData: (data: VolumeData, options?: ValidationOptions) => void;
+export declare const validateDrawData: (data: DrawData, options?: ValidationOptions) => void;

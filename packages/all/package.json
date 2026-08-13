@@ -1,0 +1,66 @@
+{
+    "name": "@meteo-render/all",
+    "version": "1.0.0",
+    "description": "Complete meteo-render distribution",
+    "main": "dist/index.cjs",
+    "types": "dist/types/index.d.ts",
+    "module": "dist/index.mjs",
+    "browser": "dist/index.umd.js",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
+    "scripts": {
+        "obfuscate": "node ../../build/obfuscate.mjs",
+        "build": "npm run clean && npm run build:rolldown && npm run build:types && npm run obfuscate",
+        "prepack": "npm run build",
+        "clean": "esno scripts/clean.ts",
+        "build:rolldown": "rolldown -c rolldown.config.mjs",
+        "build:types": "tsc -p tsconfig.types.json"
+    },
+    "keywords": [],
+    "author": "wangrl",
+    "license": "Apache-2.0",
+    "type": "module",
+    "files": [
+        "dist",
+        "package.json"
+    ],
+    "dependencies": {
+        "@meteo-render/core": "^1.0.0",
+        "@meteo-render/leaflet": "^1.0.0",
+        "@meteo-render/mars3d": "^1.0.0",
+        "@meteo-render/micaps": "^1.0.0",
+        "@meteo-render/radar": "^1.0.0",
+        "@meteo-render/raster": "^1.0.0",
+        "@meteo-render/rendering": "^1.0.0",
+        "@meteo-render/satellite": "^1.0.0",
+        "@meteo-render/upper-air": "^1.0.0",
+        "@meteo-render/volume": "^1.0.0",
+        "@meteo-render/wind": "^1.0.0"
+    },
+    "devDependencies": {
+        "@tsconfig/node24": "latest",
+        "@types/node": "latest",
+        "esno": "latest",
+        "javascript-obfuscator": "latest",
+        "rolldown": "latest",
+        "typescript": "latest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/priestqing/meteo-render.git",
+        "directory": "packages/all"
+    },
+    "bugs": {
+        "url": "https://github.com/priestqing/meteo-render/issues"
+    },
+    "homepage": "https://github.com/priestqing/meteo-render#readme"
+}

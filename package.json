@@ -1,0 +1,21 @@
+{
+    "name": "meteo-render-release",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Obfuscated release artifacts for the @meteo-render npm packages",
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "check": "node scripts/check-release.mjs",
+        "pack:dry-run": "node scripts/pack-dry-run.mjs",
+        "publish:preview": "node scripts/publish-packages.mjs --dry-run",
+        "publish:packages": "node scripts/publish-packages.mjs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/priestqing/meteo-render.git"
+    },
+    "author": "wangrl",
+    "license": "Apache-2.0"
+}

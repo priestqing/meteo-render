@@ -1,0 +1,10 @@
+import { type SatelliteBufferSource } from '../common/binaryReader';
+import { type Hdf5FileLike } from './parser';
+import type { Fy4GiirsProfileProduct, Fy4GiirsSpectrumOptions, Fy4GiirsSpectrumProduct, Fy4LayeredGridProduct, Fy4NonRasterOptions, Fy4NonRasterProduct, Fy4PointFieldProduct } from './nonRasterTypes';
+export declare const parseFy4NonRaster: (source: SatelliteBufferSource, options?: Fy4NonRasterOptions) => Fy4NonRasterProduct;
+export declare const parseFy4NonRasterFile: (file: Hdf5FileLike, options?: Fy4NonRasterOptions) => Fy4NonRasterProduct;
+export declare const parseFy4GiirsSpectrum: (source: SatelliteBufferSource, options?: Fy4GiirsSpectrumOptions) => Fy4GiirsSpectrumProduct;
+export declare const parseFy4GiirsProfile: (source: SatelliteBufferSource, noData?: number, fileName?: string) => Fy4GiirsProfileProduct;
+export declare const parseFy4GiirsPointField: (source: SatelliteBufferSource, field: string, noData?: number, fileName?: string) => Fy4PointFieldProduct;
+export declare const parseFy4CsrPointField: (source: SatelliteBufferSource, dataset?: string, channel?: number, noData?: number, fileName?: string) => Fy4PointFieldProduct;
+export declare const parseFy4LayeredGrid: (source: SatelliteBufferSource, dataset?: string, noData?: number, fileName?: string, level?: number) => Fy4LayeredGridProduct;

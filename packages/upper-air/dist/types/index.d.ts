@@ -1,0 +1,24 @@
+import type { UpperAirBufferSource, UpperAirTextSource } from './common';
+import type { CloudRadarElementProduct } from './cloudRadar/types';
+import type { GnssPwvProduct, GnssStatusProduct, RinexArchiveProduct } from './gnss/types';
+import type { MicrowaveTableProduct, MicrowaveXmlProduct } from './microwave/types';
+import type { WindProfilerProduct } from './windProfiler/types';
+export { parseWindProfiler, parseWindProfilerProfile, parseWindProfilerRadial, parseWindProfilerSpectrum } from './windProfiler/parser';
+export { windProfilerFieldToPointData } from './windProfiler/adapter';
+export type { WindProfilerField } from './windProfiler/adapter';
+export type { WindProfilerLevel, WindProfilerProduct, WindProfilerProfileProduct, WindProfilerRadialBeam, WindProfilerRadialLevel, WindProfilerRadialProduct, WindProfilerSpectrumProduct, WindProfilerStation } from './windProfiler/types';
+export { parseGnssPwv, parseGnssStatus, parseRinexArchive } from './gnss/parser';
+export { gnssPwvToPointData } from './gnss/adapter';
+export type { GnssPwvField } from './gnss/adapter';
+export type { GnssPwvObservation, GnssPwvProduct, GnssStatusProduct, RinexArchiveFile, RinexArchiveProduct } from './gnss/types';
+export { parseMicrowaveTable, parseMicrowaveXml } from './microwave/parser';
+export type { MicrowaveStation, MicrowaveTableProduct, MicrowaveXmlProduct } from './microwave/types';
+export { parseCloudRadarElements } from './cloudRadar/parser';
+export type { CloudRadarElementProduct, CloudRadarLayer } from './cloudRadar/types';
+export { parseSimpleXml } from './xml';
+export type { SimpleXmlNode } from './xml';
+export type UpperAirProduct = WindProfilerProduct | GnssPwvProduct | GnssStatusProduct | RinexArchiveProduct | MicrowaveTableProduct | MicrowaveXmlProduct | CloudRadarElementProduct[];
+export type UpperAirSource = UpperAirBufferSource | Blob | string | URL;
+/** 根据文件内部标识分派高空观测格式。 */
+export declare const parseUpperAir: (source: UpperAirTextSource) => UpperAirProduct;
+export declare const loadUpperAir: (source: UpperAirSource) => Promise<UpperAirProduct>;

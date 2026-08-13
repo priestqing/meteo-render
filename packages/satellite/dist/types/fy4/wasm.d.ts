@@ -1,0 +1,10 @@
+import type { Group } from 'h5wasm';
+import { type SatelliteBufferSource } from '../common/binaryReader';
+import type { Fy4NonRasterOptions, Fy4NonRasterProduct } from './nonRasterTypes';
+import type { Fy4Hdf5DatasetInfo, Fy4Hdf5ParseOptions, Fy4Hdf5ProductReader, Fy4RasterProduct } from './types';
+export declare const parseFy4Hdf5RasterAsync: (source: SatelliteBufferSource, options?: Fy4Hdf5ParseOptions) => Promise<Fy4RasterProduct>;
+export declare const listFy4Hdf5DatasetsAsync: (source: SatelliteBufferSource, fileName?: string) => Promise<Fy4Hdf5DatasetInfo[]>;
+export declare const parseFy4NonRasterAsync: (source: SatelliteBufferSource, options?: Fy4NonRasterOptions) => Promise<Fy4NonRasterProduct>;
+export declare const parseFy4Hdf5ProductAsync: (source: SatelliteBufferSource, rasterOptions?: Fy4Hdf5ParseOptions, nonRasterOptions?: Fy4NonRasterOptions) => Promise<Fy4RasterProduct | Fy4NonRasterProduct>;
+export declare const openFy4Hdf5ProductAsync: (source: SatelliteBufferSource, rasterOptions?: Fy4Hdf5ParseOptions, nonRasterOptions?: Fy4NonRasterOptions) => Promise<Fy4Hdf5ProductReader>;
+export declare const createWasmFy4ProductReader: (file: Group, rasterOptions: Fy4Hdf5ParseOptions, nonRasterOptions: Fy4NonRasterOptions, closeFile: () => void) => Fy4Hdf5ProductReader;
