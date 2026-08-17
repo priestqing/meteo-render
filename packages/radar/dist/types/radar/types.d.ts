@@ -328,6 +328,15 @@ export interface CrRadarProduct extends RadarGridProductBase {
     productType: RadarProductType.CR;
     storms: IRadarStormAttribute[];
 }
+export interface CrxRadarParameters {
+    sourceName: string;
+}
+/** 54 号厂商扩展组合反射率产品，不包含标准 CR 的风暴属性区。 */
+export interface CrxRadarProduct extends RadarGridProductBase {
+    kind: 'crx';
+    productType: RadarProductType.CRX;
+    parameters: CrxRadarParameters;
+}
 export interface EtRadarParameters {
     reflectivityContour: number;
 }
@@ -494,7 +503,7 @@ export interface StiRadarProduct extends RadarProductBase {
     components: StiComponent[];
     adaptation: StiAdaptationData;
 }
-export type RadarGridProduct = CrRadarProduct | EbRadarProduct | EtRadarProduct | VilRadarProduct | IDiamond131RadarProduct;
+export type RadarGridProduct = CrRadarProduct | CrxRadarProduct | EbRadarProduct | EtRadarProduct | VilRadarProduct | IDiamond131RadarProduct;
 export type RadarRadialProduct = PpiRadarProduct | OhpRadarProduct | ThpRadarProduct;
 export type RadarProduct = RadarBaseDataProduct | RadarGridProduct | RadarRadialProduct | StiRadarProduct | RoseRadarProduct;
 export type RadarBufferSource = ArrayBuffer | ArrayBufferView;
