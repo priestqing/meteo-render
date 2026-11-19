@@ -8,6 +8,7 @@ export const releasePackages = [
     'wind',
     'radar',
     'volume',
+    'image',
     'leaflet',
     'mars3d',
     'all'

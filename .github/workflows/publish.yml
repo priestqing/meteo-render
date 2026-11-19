@@ -22,6 +22,7 @@ on:
           - wind
           - radar
           - volume
+          - image
           - leaflet
           - mars3d
 

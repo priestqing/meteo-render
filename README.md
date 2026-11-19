@@ -10,6 +10,7 @@
 - `@meteo-render/wind`
 - `@meteo-render/radar`
 - `@meteo-render/volume`
+- `@meteo-render/image`
 - `@meteo-render/leaflet`
 - `@meteo-render/mars3d`
 - `@meteo-render/all`
