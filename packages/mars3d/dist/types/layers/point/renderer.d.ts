@@ -1,0 +1,37 @@
+import type { PointDataSource, PointIconOptions } from '@meteo-render/raster/core';
+import type { IMars3dPointLayerOptions, IMars3dPointMapLike, IMars3dPointRuntime } from './types';
+export declare class Mars3dPointRenderer {
+    private readonly cesium;
+    private readonly scene;
+    private options;
+    private data;
+    private points;
+    private billboards;
+    private labels;
+    private interaction;
+    private selectedIndex;
+    constructor(runtime: IMars3dPointRuntime, map: IMars3dPointMapLike, options: IMars3dPointLayerOptions);
+    setData(data: PointDataSource): Promise<void>;
+    setValues(values: Float32Array | Float64Array): void;
+    setIcon(icon: PointIconOptions): Promise<void>;
+    setColorOptions(color: NonNullable<IMars3dPointLayerOptions['color']>): void;
+    setLodOptions(lod: NonNullable<IMars3dPointLayerOptions['lod']>): void;
+    setInteractionOptions(interaction: NonNullable<IMars3dPointLayerOptions['interaction']>): void;
+    setOpacity(opacity: number): void;
+    update(options: Partial<IMars3dPointLayerOptions>): void;
+    setShow(show: boolean): void;
+    redraw(): void;
+    clearSelection(): void;
+    destroy(): void;
+    private rebuild;
+    private rebuildCollections;
+    private selectIndices;
+    private resolveColor;
+    private getHeight;
+    private getFeature;
+    private formatLabel;
+    private formatLabelParts;
+    private bindInteraction;
+    private pickFeature;
+    private removeCollection;
+}

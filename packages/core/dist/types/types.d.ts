@@ -83,6 +83,9 @@ export interface PointData {
     coordinateStride: 2 | 3;
     coordinates: Float64Array;
     field?: ScalarField;
+    ids?: readonly (string | number)[] | Uint32Array;
+    names?: readonly (string | number)[] | Uint32Array;
+    properties?: readonly (Record<string, unknown> | undefined)[];
     metadata?: DataMetadata;
 }
 export interface VolumeGeometry {

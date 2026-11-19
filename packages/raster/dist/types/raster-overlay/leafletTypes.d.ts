@@ -8,6 +8,8 @@ export interface RasterLeafletLayerCreateOptions extends RasterRendererCreateOpt
     onClick?: RasterQueryCallback;
     tooltip?: RasterTooltipOptions;
     queryOutsideClip?: boolean;
+    /** 渲染器绘制调用完成后触发，不包含初始化和帧调度等待，也不保证 GPU 已完成。 */
+    onRender?: (durationMs: number) => void;
 }
 export interface RasterQueryEvent extends L.LeafletEvent {
     result: RasterQueryResult;

@@ -1,6 +1,6 @@
 {
     "name": "@meteo-render/upper-air",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Upper-air observation format parsers producing reusable meteorological data",
     "main": "dist/index.cjs",
     "types": "dist/types/index.d.ts",
@@ -33,7 +33,7 @@
         "package.json"
     ],
     "dependencies": {
-        "@meteo-render/core": "^1.1.0",
+        "@meteo-render/core": "^1.1.1",
         "fflate": "^0.8.3"
     },
     "devDependencies": {

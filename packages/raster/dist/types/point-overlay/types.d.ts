@@ -1,11 +1,11 @@
-import type * as L from 'leaflet';
+import type { PointData } from '@meteo-render/core';
 import type { ColorRange, ColorStopInput } from '@meteo-render/rendering';
 import type { MapCrs, MapRenderViewport } from '@meteo-render/rendering';
 export type PointCoordinateArray = Float32Array | Float64Array;
 export type PointValueArray = Float32Array | Float64Array;
 export type PointId = string | number;
 export type PointIdArray = readonly PointId[] | Uint32Array;
-export type PointNameArray = readonly string[] | Uint32Array;
+export type PointNameArray = readonly (string | number)[] | Uint32Array;
 export type PointProperties = Record<string, unknown>;
 export type PointLabelContent = 'none' | 'value' | 'name' | 'name-value';
 export type PointLabelPosition = 'top' | 'bottom';
@@ -19,6 +19,8 @@ export interface IPointDataItem {
 }
 export interface IPointLabelPartOptions {
     position?: PointLabelPosition;
+    /** 默认固定颜色；value 模式按点的原始数值使用图层色标。 */
+    colorMode?: PointColorMode;
     color?: string;
     font?: string;
 }
@@ -45,7 +47,7 @@ export interface IPointColumnData {
     properties?: readonly (PointProperties | undefined)[];
     noData?: number;
 }
-export type PointDataSource = readonly IPointDataItem[] | IPointColumnData;
+export type PointDataSource = PointData | readonly IPointDataItem[] | IPointColumnData;
 export interface IPointFeature extends IPointDataItem {
     index: number;
 }
@@ -126,8 +128,10 @@ export interface IPointInteractionOptions {
 /** Point rendering backend. `canvas` is kept as a compatibility alias of `cpu`. */
 export type PointRendererType = 'cpu' | 'webgl' | 'webgl2' | 'webgpu' | 'canvas';
 export type PointCallback = (point: IPointFeature) => void;
-export interface IPointLeafletLayerCreateOptions extends L.LayerOptions {
+export interface IPointLayerCreateOptions {
     data: PointDataSource;
+    /** Fixed altitude in metres when the source does not contain a third coordinate. */
+    height?: number;
     rendererType?: PointRendererType;
     icon?: PointIconOptions;
     color?: IPointColorOptions;
@@ -138,16 +142,19 @@ export interface IPointLeafletLayerCreateOptions extends L.LayerOptions {
     onHover?: PointCallback;
     onClick?: PointCallback;
 }
-export interface IPointLeafletLayer extends L.Layer {
+export interface IPointLayerUpdate extends Partial<Omit<IPointLayerCreateOptions, 'data' | 'rendererType'>> {
+    data?: PointDataSource;
+}
+export interface IPointDataLayer {
     setData: (data: PointDataSource) => Promise<void>;
     setValues: (values: PointValueArray) => void;
     setIcon: (icon: PointIconOptions) => Promise<void>;
     setColorOptions: (color: IPointColorOptions) => void;
     setLodOptions: (lod: IPointLodOptions) => void;
+    setLabelOptions: (label: PointLabelOptions) => void;
     setInteractionOptions: (interaction: IPointInteractionOptions) => void;
     setOpacity: (opacity: number) => void;
     redraw: () => void;
-    getCanvas: () => HTMLCanvasElement | null;
     clearSelection: () => void;
 }
 export type { ColorRange, ColorStopInput, MapCrs, MapRenderViewport };

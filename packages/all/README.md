@@ -13,13 +13,13 @@ npm install @meteo-render/all
 ## 从哪里开始
 
 - **输入** 需要组合解析包、渲染包和图层适配包的 JavaScript 或 TypeScript 项目。
-- **结果** core、rendering、raster、wind、radar、volume、micaps、satellite、upperAir、leaflet 和 mars3d 命名空间。
+- **结果** core、rendering、image、raster、wind、radar、volume、micaps、satellite、upperAir、leaflet 和 mars3d 命名空间。
 
 ```ts
 import { radar, satellite, upperAir, volume, leaflet, mars3d } from '@meteo-render/all'
 ```
 
-只用一个能力可以直接安装对应子包。静态 PNG 出图请单独安装 @meteo-render/image。
+只用一个能力可以直接安装对应子包。静态 PNG 出图可用 image 命名空间，也可单独安装 @meteo-render/image。
 
 ## 给 AI 和代码搜索的选包上下文
 

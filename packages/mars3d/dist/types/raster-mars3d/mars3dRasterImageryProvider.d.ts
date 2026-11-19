@@ -1,4 +1,4 @@
-import { WebgpuRasterTileRenderer } from '@meteo-render/raster';
+import { WebgpuRasterTileRenderer } from '@meteo-render/raster/core';
 import type { CesiumEventLike, CesiumGeographicTilingSchemeLike, CesiumRectangleLike, CesiumRequestLike, CesiumRuntime, Mars3dRasterImageryProviderOptions } from './types';
 /**
  * 为 Mars3D/Cesium 提供透明 WebGPU 栅格瓦片。
@@ -24,6 +24,7 @@ export declare class Mars3dRasterImageryProvider {
     pickFeatures(): undefined;
     destroy(): void;
     get renderer(): WebgpuRasterTileRenderer;
+    private createTransparentTile;
     private validateOptions;
 }
 /** 创建可交给 Mars3D BaseTileLayer 的 Cesium ImageryProvider。 */

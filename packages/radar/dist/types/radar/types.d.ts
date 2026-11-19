@@ -1,6 +1,7 @@
 import type { RasterColorStop, RasterLeafletLayerCreateOptions, RasterRendererCreateOptions, RasterRendererType } from '@meteo-render/raster';
 import type { GridData } from '@meteo-render/rendering';
 import type { IDiamond131RadarProduct } from './products/diamond131/types';
+import type { IHmbObsProduct } from './hmb-obs/types';
 export declare const RADAR_MAGIC_NUMBER = 1297371986;
 export declare enum RadarProductType {
     PPI = 1,
@@ -505,7 +506,7 @@ export interface StiRadarProduct extends RadarProductBase {
 }
 export type RadarGridProduct = CrRadarProduct | CrxRadarProduct | EbRadarProduct | EtRadarProduct | VilRadarProduct | IDiamond131RadarProduct;
 export type RadarRadialProduct = PpiRadarProduct | OhpRadarProduct | ThpRadarProduct;
-export type RadarProduct = RadarBaseDataProduct | RadarGridProduct | RadarRadialProduct | StiRadarProduct | RoseRadarProduct;
+export type RadarProduct = RadarBaseDataProduct | RadarGridProduct | RadarRadialProduct | StiRadarProduct | RoseRadarProduct | IHmbObsProduct;
 export type RadarBufferSource = ArrayBuffer | ArrayBufferView;
 export type RadarSource = RadarBufferSource | Blob | string | URL;
 export interface RadarParseOptions {

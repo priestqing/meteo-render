@@ -1,4 +1,4 @@
-import type { RasterColorMode, RasterColorRange, RasterColorStopInput, RasterGrid, RasterSampleMode } from '@meteo-render/raster';
+import type { RasterColorMode, RasterColorRange, RasterColorStopInput, RasterGrid, RasterSampleMode } from '@meteo-render/raster/core';
 import type { IMars3dBaseLayerLike, IMars3dCesiumRuntime } from './rasterPlaneCesiumTypes';
 export interface IMars3dRasterPlaneLayerOptions {
     grid: RasterGrid;

@@ -1,6 +1,6 @@
 {
     "name": "@meteo-render/all",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Complete meteo-render distribution",
     "main": "dist/index.cjs",
     "types": "dist/types/index.d.ts",
@@ -34,17 +34,18 @@
         "package.json"
     ],
     "dependencies": {
-        "@meteo-render/core": "^1.1.0",
-        "@meteo-render/leaflet": "^1.1.0",
-        "@meteo-render/mars3d": "^1.1.0",
-        "@meteo-render/micaps": "^1.1.0",
-        "@meteo-render/radar": "^1.1.0",
-        "@meteo-render/raster": "^1.1.0",
-        "@meteo-render/rendering": "^1.1.0",
-        "@meteo-render/satellite": "^1.1.0",
-        "@meteo-render/upper-air": "^1.1.0",
-        "@meteo-render/volume": "^1.1.0",
-        "@meteo-render/wind": "^1.1.0"
+        "@meteo-render/core": "^1.1.1",
+        "@meteo-render/image": "^1.1.1",
+        "@meteo-render/leaflet": "^1.1.1",
+        "@meteo-render/mars3d": "^1.1.1",
+        "@meteo-render/micaps": "^1.1.1",
+        "@meteo-render/radar": "^1.1.1",
+        "@meteo-render/raster": "^1.1.1",
+        "@meteo-render/rendering": "^1.1.1",
+        "@meteo-render/satellite": "^1.1.1",
+        "@meteo-render/upper-air": "^1.1.1",
+        "@meteo-render/volume": "^1.1.1",
+        "@meteo-render/wind": "^1.1.1"
     },
     "devDependencies": {
         "@tsconfig/node24": "latest",

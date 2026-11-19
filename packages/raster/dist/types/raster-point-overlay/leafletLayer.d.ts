@@ -1,2 +1,2 @@
-import type { RasterPointLeafletLayer, RasterPointLeafletLayerCreateOptions } from './types';
+import type { RasterPointLeafletLayer, RasterPointLeafletLayerCreateOptions } from './leafletTypes';
 export declare const createRasterPointLeafletLayer: (options: RasterPointLeafletLayerCreateOptions) => RasterPointLeafletLayer;

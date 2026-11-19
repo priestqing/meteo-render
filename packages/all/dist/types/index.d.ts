@@ -1,5 +1,6 @@
 export * as core from '@meteo-render/core';
 export * as rendering from '@meteo-render/rendering';
+export * as image from '@meteo-render/image';
 export * as raster from '@meteo-render/raster';
 export * as wind from '@meteo-render/wind';
 export * as radar from '@meteo-render/radar';

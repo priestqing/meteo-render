@@ -1,4 +1,4 @@
-import type { WebgpuRasterTileRendererOptions } from '@meteo-render/raster';
+import type { WebgpuRasterTileRendererOptions } from '@meteo-render/raster/core';
 export type CesiumRectangleLike = object;
 export interface CesiumEventLike {
     raiseEvent(...arguments_: unknown[]): void;

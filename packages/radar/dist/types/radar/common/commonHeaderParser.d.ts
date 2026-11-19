@@ -12,4 +12,6 @@ export interface RadarCommonConfiguration {
     scans: RadarScan[];
 }
 export declare const parseCommonRadarHeader: (reader: RadarBinaryReader) => IParsedRadarHeader;
+/** 部分厂商的 CRX 沿用基数据通用头；只在产品头明确匹配时进入产品解析。 */
+export declare const hasMislabeledCrxHeader: (reader: RadarBinaryReader) => boolean;
 export declare const parseRadarCommonConfiguration: (reader: RadarBinaryReader) => RadarCommonConfiguration;

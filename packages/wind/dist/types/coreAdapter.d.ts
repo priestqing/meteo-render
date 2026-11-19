@@ -1,3 +1,4 @@
 import { type VectorGridData } from '@meteo-render/core';
 import type { IWindGrid } from './wind-data/types';
 export declare const windGridToVectorGridData: (grid: IWindGrid, noData?: number) => VectorGridData;
+export declare const vectorGridDataToWindGrid: (data: VectorGridData, noData?: number) => IWindGrid;

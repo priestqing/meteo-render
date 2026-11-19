@@ -1,7 +1,6 @@
-import type * as L from 'leaflet';
+import type { RasterData } from '@meteo-render/core';
 import type { ClipMode, CoverageOptions } from '@meteo-render/rendering';
 import type { ColorRange, ColorStopInput, GridData } from '@meteo-render/rendering';
-import type { RasterParams, RasterSource } from '../raster-overlay/rasterTypes';
 import type { RasterPointFeature, RasterPointFilterOptions, RasterPointLodOptions } from './frameTypes';
 export type RasterPointFillColor = string | 'value';
 export type RasterPointColorMode = 'single' | 'color-stops';
@@ -39,8 +38,8 @@ export interface RasterPointInteractionOptions {
     tooltip?: RasterPointTooltipOptions;
 }
 export type RasterPointCallback = (point: RasterPointFeature) => void;
-export interface RasterPointLeafletLayerCreateOptions extends L.LayerOptions {
-    grid: GridData;
+export interface IRasterPointLayerCreateOptions {
+    data: RasterData;
     colorStops?: ColorStopInput[];
     colorRange?: ColorRange;
     opacity?: number;
@@ -53,17 +52,9 @@ export interface RasterPointLeafletLayerCreateOptions extends L.LayerOptions {
     onHover?: RasterPointCallback;
     onClick?: RasterPointCallback;
 }
-export interface RasterPointEvent extends L.LeafletEvent {
-    point: RasterPointFeature;
-    latlng: L.LatLng;
-    originalEvent: MouseEvent;
-}
-export interface RasterPointLeafletLayer extends L.Layer {
-    setParams: (params: RasterParams) => Promise<void>;
-    setSource: (source: RasterSource) => Promise<void>;
-    setGrid: (grid: GridData) => Promise<void>;
+export interface IRasterPointDataLayer {
+    setData: (data: RasterData) => Promise<void> | void;
     redraw: () => void;
-    getCanvas: () => HTMLCanvasElement | null;
     setColorStops: (colorStops: ColorStopInput[]) => void;
     setColorRange: (range: ColorRange | null) => void;
     setOpacity: (opacity: number) => void;
@@ -76,6 +67,7 @@ export interface RasterPointLeafletLayer extends L.Layer {
     setInteractionOptions: (interaction: RasterPointInteractionOptions) => void;
     setFilterOptions: (filter: RasterPointFilterOptions) => void;
     clearSelection: () => void;
+    destroy(noDel?: boolean): void;
 }
 export type { ClipMode, ColorRange, ColorStopInput, GridData };
 export type { RasterPointAutoLodOptions, RasterPointFeature, RasterPointFilterOptions, RasterPointFrame, RasterPointFrameOptions, RasterPointFramePoint, RasterPointLodLevel, RasterPointLodOptions, RasterPointLodViewportSize, RasterPointManualLodOptions } from './frameTypes';

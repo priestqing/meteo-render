@@ -40,6 +40,7 @@ export interface IMars3dBaseLayerLike {
     readonly _map?: IMars3dMapLike;
     readonly options: Record<string, unknown>;
     show: boolean;
+    _removedHook(): void;
     destroy(noDel?: boolean): void;
 }
 interface ICesiumTextureConstructorOptions {

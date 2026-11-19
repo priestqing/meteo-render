@@ -37,7 +37,7 @@ for (const packageDirectory of selectedPackages) {
     if (!manifest.repository?.url?.includes('github.com/priestqing/meteo-render')) throw new Error(`${manifest.name} repository 配置错误`)
     if (manifest.homepage !== 'https://github.com/priestqing/meteo-render#readme') throw new Error(`${manifest.name} homepage 配置错误`)
 
-    const unexpected = readdirSync(directory).filter(name => !['dist', 'package.json', 'LICENSE'].includes(name))
+    const unexpected = readdirSync(directory).filter(name => !['dist', 'package.json', 'LICENSE', 'README.md'].includes(name))
     if (unexpected.length) throw new Error(`${manifest.name} 包目录存在非发布内容：${unexpected.join(', ')}`)
 }
 

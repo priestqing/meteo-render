@@ -1,5 +1,5 @@
-import type { RasterRenderState } from '@meteo-render/raster';
-import type { RasterGrid } from '@meteo-render/raster';
+import type { RasterRenderState } from '@meteo-render/raster/core';
+import type { RasterGrid } from '@meteo-render/raster/core';
 import type { CesiumRasterTextureAdapter } from './cesiumRasterTextureAdapter';
 import type { ICesiumMaterialLike, IMars3dCesiumRuntime } from './rasterPlaneCesiumTypes';
 /** 管理 Cesium Material 使用的标量栅格纹理和色标纹理。 */

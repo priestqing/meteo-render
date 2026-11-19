@@ -55,6 +55,44 @@ export interface AwxImageProduct {
     calibration?: Float32Array;
     raster: RasterData;
 }
+export interface IAwxGridFieldHeader {
+    satellite: string;
+    element: number;
+    bytesPerValue: number;
+    referenceValue: number;
+    scale: number;
+    timeScope: number;
+    startTime: string;
+    endTime: string;
+    north: number;
+    south: number;
+    west: number;
+    east: number;
+    spacingUnit: number;
+    horizontalSpacing: number;
+    verticalSpacing: number;
+    width: number;
+    height: number;
+    landMaskEnabled: boolean;
+    landValue: number;
+    cloudMaskEnabled: boolean;
+    cloudValue: number;
+    waterMaskEnabled: boolean;
+    waterValue: number;
+    iceMaskEnabled: boolean;
+    iceValue: number;
+    qualityControl: number;
+    qualityMaximum: number;
+    qualityMinimum: number;
+}
+export interface IAwxGridFieldProduct {
+    kind: 'awx-grid-field';
+    primary: AwxPrimaryHeader;
+    grid: IAwxGridFieldHeader;
+    raster: RasterData;
+}
+export type AwxProduct = AwxImageProduct | IAwxGridFieldProduct;
 export interface AwxParseOptions {
     noData?: number;
+    maxDimension?: number;
 }

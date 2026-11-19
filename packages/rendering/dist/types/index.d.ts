@@ -9,6 +9,8 @@ export type { WebgpuFrameContext, WebgpuRendererRequirements, WebgpuRendererReso
 export type { Webgl2FrameContext, Webgl2RendererRequirements, Webgl2RendererResources } from './webgl2/types';
 export { BaseWebgl2Renderer, Webgl2CoverageResources, Webgl2VisualizationResources } from './webgl2';
 export * from './map';
+export * from './map/windLayerTypes';
+export * from './map/radarCoverageLayerTypes';
 export * from './coverage';
 export * from './polygon';
 export * from './visualization';

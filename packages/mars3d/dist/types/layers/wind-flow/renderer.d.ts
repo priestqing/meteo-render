@@ -1,0 +1,35 @@
+import type { IWindFlowLayerOptions, IWindFlowLayerUpdate } from '@meteo-render/rendering';
+import type { VectorGridData } from '@meteo-render/core';
+import type { IMars3dWindFlowMapLike, IMars3dWindFlowRuntime } from './types';
+export declare class Mars3dWindFlowRenderer {
+    private readonly runtime;
+    private readonly map;
+    private readonly canvas;
+    private readonly context;
+    private options;
+    private longitude;
+    private latitude;
+    private age;
+    private animationFrame;
+    private lastTime;
+    private running;
+    private shown;
+    constructor(runtime: IMars3dWindFlowRuntime, map: IMars3dWindFlowMapLike, options: IWindFlowLayerOptions);
+    setData(data: VectorGridData): void;
+    update(options: IWindFlowLayerUpdate): void;
+    setShow(show: boolean): void;
+    start(): void;
+    stop(): void;
+    clear(): void;
+    redraw(): void;
+    isRunning(): boolean;
+    destroy(): void;
+    private readonly animate;
+    private draw;
+    private project;
+    private isVisible;
+    private resetParticles;
+    private respawn;
+    private resize;
+    private createCanvas;
+}

@@ -1,0 +1,5 @@
+Glyph outlines derived from Source Han Sans CN Regular, version 1.000.
+Copyright (c) 2014 Adobe Systems Incorporated. All Rights Reserved.
+Licensed under the Apache License, Version 2.0.
+Modified by selecting glyphs and converting their outlines to TypeScript data.
+https://github.com/adobe-fonts/source-han-sans/tree/1.000
