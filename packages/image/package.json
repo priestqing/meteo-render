@@ -1,6 +1,6 @@
 {
     "name": "@meteo-render/image",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Static PNG rendering for meteo-render draw data",
     "main": "dist/index.cjs",
     "types": "dist/types/index.d.ts",
@@ -26,8 +26,8 @@
         "package.json"
     ],
     "dependencies": {
-        "@meteo-render/core": "^1.0.0",
-        "@meteo-render/rendering": "^1.0.0"
+        "@meteo-render/core": "^1.1.0",
+        "@meteo-render/rendering": "^1.1.0"
     },
     "repository": {
         "type": "git",
